@@ -43,4 +43,3 @@ for n=1:number_of_sessions
         save([files_path 'converted_' file_names],'this_session_converted_footprints','-v7.3')
     end
 end
-
