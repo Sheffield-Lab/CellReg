@@ -5,10 +5,29 @@
 % Created: 11-17-25
 % Last modified: 11-17-25
 
-% loop through cell_registered_struct.cell_to_index_map and determine how
-% many cells are in each session
-% cell_registered_struct needs to already be open
-data = cell_registered_struct.cell_to_index_map;
+clear all;
+
+%% Ask user if using original output file or corrected
+fprintf('\n')
+disp('Want to use original cell_registered output file? -> original')
+disp('Or want to use use cell_to_index_map_corrected? -> corrected')
+fprintf('\n')
+response = input('Your answer, word only, no quotation marks: ', 's');
+
+% load data based on response
+if strcmp(response, 'original')
+    [CellReg_file, CellReg_path]=uigetfile('*.mat', 'Select cell_registered_struct file');
+    cd(CellReg_path)
+    CellRegdata = load(CellReg_file);
+    data = CellRegdata.cell_registered_struct.cell_to_index_map;
+end
+
+if strcmp(response, 'corrected')
+    [CellReg_file, CellReg_path] = uigetfile('*.mat', 'Select cell_to_index_map_corrected file');
+    cd(CellReg_path)
+    CellRegdata = load(CellReg_file);
+    data = CellRegdata.cell_to_index_map_corrected;
+end
 
 % session presence
 present = data ~= 0;         
