@@ -7,7 +7,7 @@
 
 % loop through cell_registered_struct.cell_to_index_map and determine how
 % many cells are in each session
-
+% cell_registered_struct needs to already be open
 data = cell_registered_struct.cell_to_index_map;
 
 % session presence
